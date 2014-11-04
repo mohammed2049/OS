@@ -182,17 +182,17 @@ public class CommandsOpe {
 		System.out.println(date.toString());
 	}
 
-	public static void move(String nextPath) {
-		File myfile = new File(path);
+	public static void move(String currentPath , String nextPath) {
+		File myfile = new File(currentPath);
 
 		String rename;
-		int i = path.length() - 1;
+		int i = currentPath.length() - 1;
 		for (; i >= 0; i--) {
-			if (path.charAt(i) == '/')
+			if (currentPath.charAt(i) == '/')
 				break;
 		}
 
-		rename = path.substring(i);
+		rename = currentPath.substring(i);
 
 		nextPath = nextPath + rename;
 		if (myfile.renameTo(new File(nextPath))) {
@@ -258,5 +258,6 @@ public class CommandsOpe {
 	}
 
 }
+
 
 

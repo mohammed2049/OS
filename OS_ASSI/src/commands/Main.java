@@ -23,7 +23,7 @@ public class Main {
 			} else if (arr[0].equals("cd")) {
 				CommandsOpe.changePath(arr[1]);
 			}else if (arr[0].equals("mv")){
-				CommandsOpe.move(arr[1]);
+				CommandsOpe.move(arr[1] , arr[2]);
 			}else if(arr[0].equals("mkdir")){
 				CommandsOpe.make_dir(arr[1]);
 			}else if(arr[0].equals("clear")){
@@ -49,3 +49,4 @@ public class Main {
 	}
 
 }
+
