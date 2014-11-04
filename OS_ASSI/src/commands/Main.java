@@ -1,5 +1,4 @@
 package commands;
-
 import java.io.File;
 import java.util.Scanner;
 
@@ -21,7 +20,7 @@ public class Main {
 			if (arr[0].equals("ls")) {
 				CommandsOpe.listFiles();
 			} else if (arr[0].equals("cd")) {
-				CommandsOpe.changePath(arr[1]);
+				CommandsOpe.cd(command);
 			}else if (arr[0].equals("mv")){
 				CommandsOpe.move(arr[1] , arr[2]);
 			}else if(arr[0].equals("mkdir")){
