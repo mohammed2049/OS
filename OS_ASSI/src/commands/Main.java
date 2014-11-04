@@ -1,5 +1,6 @@
 package commands;
 
+import java.io.File;
 import java.util.Scanner;
 
 /*
@@ -24,7 +25,24 @@ public class Main {
 			}else if (arr[0].equals("mv")){
 				CommandsOpe.move(arr[1]);
 			}else if(arr[0].equals("mkdir")){
-				CommandsOpe.make_dir();
+				CommandsOpe.make_dir(arr[1]);
+			}else if(arr[0].equals("clear")){
+				CommandsOpe.clear();
+			}else if(arr[0].equals("cd")){
+				CommandsOpe.cd(arr[1]);
+			}else if(arr[0].equals("cat")){
+				CommandsOpe.CreateFile(arr[1]);
+			}else if(arr[0].equals("rm") || arr[0].equals("rmdir")){
+				File myfile = new File(arr[1]);
+				CommandsOpe.delete_directory(myfile);
+			}else if(arr[0].equals("more")){
+				CommandsOpe.moreOpe(arr[1]);
+			}else if(arr[0].equals("less")){
+				CommandsOpe.lessOpe(arr[1]);
+			}else if(arr[0].equals("Date")){
+				CommandsOpe.getDate();
+			}else if(arr[0].equals("pwd")){
+				CommandsOpe.currPath();
 			}
 		}
 		input.close();
