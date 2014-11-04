@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Date;
 
 public class CommandsOpe {
-	public static String path = "//home//";
+	public static String path = "/home/";
 
 	public static void listFiles() {
 		File dir = new File(path);
