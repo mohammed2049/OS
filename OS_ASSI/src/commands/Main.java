@@ -5,7 +5,7 @@ package commands;
  */
 public class Main {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException{
 		
 		CommandsOpe.changePath("//home//mohammed//");
 		//CommandsOpe.listFiles();

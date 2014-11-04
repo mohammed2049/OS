@@ -69,28 +69,49 @@ public class CommandsOpe {
 		return false;
 	}
 
-	public static boolean cd(String line) {
+	public static String cd(String line) {
 		String path1 = path;
 		String ar[] = line.split(" ");
 		if (ar[0].equals("cd")) {
 			if (ar[1].charAt(0) == '/') {
 				path1 = "/";
-				ar[1]=ar[1].substring(1);
-			}	
+				ar[1] = ar[1].substring(1);
+			}
 			ar = ar[1].split("/");
 			int i = 0;
-			while (i< ar.length) {
+			while (i < ar.length) {
 				if (isDirectory(path1, ar[i]))
 					path1 += "/" + ar[i];
 				else
 					break;
 				i++;
 			}
-			System.out.println((i == ar.length) ? path1
-					: "No such file or directory");
+
 			path = path1;
-			return true;
+			return (i == ar.length) ? path1 : "No such file or directory";
 		}
-		return false;
+		return null;
 	}
+
+	public static void redirection(String filename, String output,
+			String command) throws IOException{
+		if (command.equals(">")) {
+			FileOutputStream out = null;
+			try {
+				out = new FileOutputStream(filename);
+				for (int c : output.toCharArray()) {
+					out.write((char) c);
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		else if(command.equals(">>")){
+			BufferedWriter outStream= new BufferedWriter(new FileWriter(filename, true));
+			outStream.write("\n"+output);
+			outStream.close();
+		}
+
+	}
+
 }
