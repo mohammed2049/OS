@@ -1,5 +1,3 @@
-package commands;
-
 import java.io.*;
 
 public class CommandsOpe {
@@ -58,5 +56,41 @@ public class CommandsOpe {
 			}
 		}
 
+	}
+
+	public static boolean isDirectory(String path, String diri) {
+		File dir = new File(path);
+		if (dir.isDirectory()) {
+			String[] files = dir.list();
+			for (int i = 0; i < files.length; i++)
+				if (files[i].equals(diri))
+					return true;
+		}
+		return false;
+	}
+
+	public static boolean cd(String line) {
+		String path1 = path;
+		String ar[] = line.split(" ");
+		if (ar[0].equals("cd")) {
+			if (ar[1].charAt(0) == '/') {
+				path1 = "/";
+				ar[1]=ar[1].substring(1);
+			}	
+			ar = ar[1].split("/");
+			int i = 0;
+			while (i< ar.length) {
+				if (isDirectory(path1, ar[i]))
+					path1 += "/" + ar[i];
+				else
+					break;
+				i++;
+			}
+			System.out.println((i == ar.length) ? path1
+					: "No such file or directory");
+			path = path1;
+			return true;
+		}
+		return false;
 	}
 }
