@@ -73,7 +73,7 @@ public class CommandsOpe {
 		return false;
 	}
 
-	public static String cd(String line) {
+	public static void cd(String line) {
 		String path1 = path;
 		String ar[] = line.split(" ");
 		if (ar[0].equals("cd")) {
@@ -92,9 +92,8 @@ public class CommandsOpe {
 			}
 
 			path = path1;
-			return (i == ar.length) ? path1 : "No such file or directory";
+			System.out.println((i == ar.length) ? path1 : "No such file or directory");
 		}
-		return null;
 	}
 
 	public static void redirection(String filename, String output,
