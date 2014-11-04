@@ -9,7 +9,8 @@ public class Main {
 		
 		CommandsOpe.changePath("//home//mohammed//");
 		//CommandsOpe.listFiles();
-		CommandsOpe.moreOpe("testMore.txt");
+//		CommandsOpe.moreOpe("testMore.txt");
+//		CommandsOpe.lessOpe("testMore.txt");
 	}
 
 }
