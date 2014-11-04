@@ -1,5 +1,3 @@
-package commands;
-
 import java.io.*;
 import java.util.Date;
 
@@ -62,6 +60,61 @@ public class CommandsOpe {
 
 	}
 
+
+	public static boolean isDirectory(String path, String diri) {
+		File dir = new File(path);
+		if (dir.isDirectory()) {
+			String[] files = dir.list();
+			for (int i = 0; i < files.length; i++)
+				if (files[i].equals(diri))
+					return true;
+		}
+		return false;
+	}
+
+	public static String cd(String line) {
+		String path1 = path;
+		String ar[] = line.split(" ");
+		if (ar[0].equals("cd")) {
+			if (ar[1].charAt(0) == '/') {
+				path1 = "/";
+				ar[1] = ar[1].substring(1);
+			}
+			ar = ar[1].split("/");
+			int i = 0;
+			while (i < ar.length) {
+				if (isDirectory(path1, ar[i]))
+					path1 += "/" + ar[i];
+				else
+					break;
+				i++;
+			}
+
+			path = path1;
+			return (i == ar.length) ? path1 : "No such file or directory";
+		}
+		return null;
+	}
+
+	public static void redirection(String filename, String output,
+			String command) throws IOException{
+		if (command.equals(">")) {
+			FileOutputStream out = null;
+			try {
+				out = new FileOutputStream(filename);
+				for (int c : output.toCharArray()) {
+					out.write((char) c);
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		else if(command.equals(">>")){
+			BufferedWriter outStream= new BufferedWriter(new FileWriter(filename, true));
+			outStream.write("\n"+output);
+			outStream.close();
+		}
+	}
 	@SuppressWarnings("deprecation")
 	public static void lessOpe(String fileName) {
 		File file = new File(path + fileName);
@@ -178,10 +231,10 @@ public class CommandsOpe {
 		} else {
 			file.delete();
 			System.out.println("File is deleted : " + file.getAbsolutePath());
+
 		}
 
 	}
-
 	public static void CreateFile() {
 		try {
 
@@ -202,4 +255,8 @@ public class CommandsOpe {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}
+
 }
+
+
+

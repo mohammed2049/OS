@@ -1,14 +1,12 @@
-package commands;
 
-import java.util.Scanner;
-
+import java.io.IOException;
+import java.util.*;
 /*
  * exists()
  * delete()	
  */
 public class Main {
-
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException{
 		Scanner input = new Scanner(System.in);
 		String command;
 		while (true) {
@@ -28,6 +26,7 @@ public class Main {
 			}
 		}
 		input.close();
+
 	}
 
 }
