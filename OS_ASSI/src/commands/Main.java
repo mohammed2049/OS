@@ -8,6 +8,7 @@ import java.util.Scanner;
  * exists()
  * delete()	
  */
+
 public class Main  {
  
 	public static void main(String[] args)  {
@@ -38,7 +39,6 @@ public class Main  {
 			}else if(arr[0].equals("cat")){
 				CommandsOpe.CreateFile(arr[1]);
 			}else if(arr[0].equals("rm") || arr[0].equals("rmdir")){
-				
 				CommandsOpe.delete_directory(arr[1]);
 			}else if(arr[0].equals("more")){
 				CommandsOpe.moreOpe(arr[1]);
@@ -57,6 +57,9 @@ public class Main  {
 				}
 				else
 					CommandsOpe.currPath();
+			}
+			else if(arr[0].equals("find")){
+				CommandsOpe.find(arr[2],arr[1]);
 			}
 		}
 		input.close();

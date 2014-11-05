@@ -148,7 +148,7 @@ public class CommandsOpe {
 
 	@SuppressWarnings("deprecation")
 	public static void lessOpe(String fileName) {
-		File file = new File(path + fileName);
+		File file = new File(path +"/"+ fileName);
 		FileInputStream fis = null;
 		BufferedInputStream bis = null;
 		DataInputStream dis = null;
@@ -215,8 +215,10 @@ public class CommandsOpe {
 	}
 
 	public static void move(String currentPath, String nextPath) {
+		currentPath= path+"/"+currentPath;
+		nextPath= path+"/"+nextPath;
 		File myfile = new File(currentPath);
-
+		
 		System.out.println(currentPath);
 		String rename;
 
@@ -305,5 +307,22 @@ public class CommandsOpe {
 	public static void clear() {
 		System.out.print("/033[H/033[2J");
 		System.out.flush();
+	}
+	
+	public static void find(String curpath,String wantedfile){
+		File dir = new File(curpath);
+		if (dir.isDirectory()) {
+			String[] files = dir.list();
+			for (int i = 0; i < files.length; ++i) {
+				if(files[i].equals(wantedfile)){
+					System.out.println(curpath+"/"+wantedfile);
+					return;
+				}
+				File dir1=new File(curpath+"/"+files[i]);
+				if(dir1.isDirectory())
+					find(curpath+"/"+files[i],wantedfile);
+			}
+		}
+		return;
 	}
 }
