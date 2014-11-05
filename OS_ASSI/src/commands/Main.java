@@ -1,14 +1,16 @@
 package commands;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 /*
  * exists()
  * delete()	
  */
-public class Main {
+public class Main  {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		Scanner input = new Scanner(System.in);
 		String command;
 		while (true) {
@@ -18,7 +20,11 @@ public class Main {
 				break;
 			String arr[] = command.split(" ");
 			if (arr[0].equals("ls")) {
-				CommandsOpe.listFiles();
+				if (arr.length==3){
+					CommandsOpe.redirection(arr[2],CommandsOpe.listFiles(), arr[1]);
+				}
+				else
+					CommandsOpe.listFiles();
 			} else if (arr[0].equals("cd")) {
 				CommandsOpe.cd(command);
 			}else if (arr[0].equals("mv")){
@@ -39,9 +45,18 @@ public class Main {
 			}else if(arr[0].equals("less")){
 				CommandsOpe.lessOpe(arr[1]);
 			}else if(arr[0].equals("Date")){
-				CommandsOpe.getDate();
+				if (arr.length==3){
+					CommandsOpe.redirection(arr[2],CommandsOpe.getDate(), arr[1]);
+				}
+				else
+					CommandsOpe.getDate();
+				
 			}else if(arr[0].equals("pwd")){
-				CommandsOpe.currPath();
+				if (arr.length==3){
+					CommandsOpe.redirection(arr[2],CommandsOpe.currPath(), arr[1]);
+				}
+				else
+					CommandsOpe.currPath();
 			}
 		}
 		input.close();
