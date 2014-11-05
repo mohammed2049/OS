@@ -1,15 +1,15 @@
-package commands;
-
+//package commands;
+ 
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-
+ 
 /*
  * exists()
  * delete()	
  */
 public class Main  {
-
+ 
 	public static void main(String[] args)  {
 		Scanner input = new Scanner(System.in);
 		String command;
@@ -50,7 +50,7 @@ public class Main  {
 				}
 				else
 					CommandsOpe.getDate();
-				
+ 
 			}else if(arr[0].equals("pwd")){
 				if (arr.length==3){
 					CommandsOpe.redirection(arr[2],CommandsOpe.currPath(), arr[1]);
@@ -61,6 +61,5 @@ public class Main  {
 		}
 		input.close();
 	}
-
+ 
 }
-
