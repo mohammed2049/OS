@@ -61,6 +61,9 @@ public class Main  {
 			else if(arr[0].equals("find")){
 				CommandsOpe.find(arr[2],arr[1]);
 			}
+			else if(arr[0].equals("grep")){
+				CommandsOpe.grep(arr[2],arr[1]);
+			}
 		}
 		input.close();
 	}

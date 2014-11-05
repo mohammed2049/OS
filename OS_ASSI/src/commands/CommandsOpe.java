@@ -283,7 +283,7 @@ public class CommandsOpe {
 		} else {
 			file.delete();
 			System.out.println("File is deleted : " + file.getAbsolutePath());
-
+			
 		}
 
 	}
@@ -324,5 +324,27 @@ public class CommandsOpe {
 			}
 		}
 		return;
+	}
+	public static void grep(String filename,String text){
+		filename=path+"/"+filename;
+		try {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (exist(line,text))
+                	System.out.println(line);
+            }
+            reader.close();
+        } catch (Exception e) {
+            System.err.format("Exception occurred trying to read '%s'.", filename);
+            e.printStackTrace();
+        }
+	}
+	public static boolean exist(String line,String wanted){
+		String ar[]=line.split(" ");
+		for(int i=0;i<ar.length;i++)
+			if(wanted.equals(ar[i]))
+				return true;
+		return false;
 	}
 }
