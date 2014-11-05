@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 
 public class Main  {
- 
+	
 	public static void main(String[] args)  {
 		Scanner input = new Scanner(System.in);
 		String command;
@@ -63,6 +63,12 @@ public class Main  {
 			}
 			else if(arr[0].equals("grep")){
 				CommandsOpe.grep(arr[2],arr[1]);
+			}
+			else if(arr[0].equals("help")){
+				if(arr.length==2)
+					CommandsOpe.help(arr[1]);
+				else
+					CommandsOpe.help("NO");
 			}
 		}
 		input.close();

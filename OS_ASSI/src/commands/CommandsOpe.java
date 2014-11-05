@@ -1,10 +1,39 @@
 // package commands;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CommandsOpe {
 	public static String path = "/home";
+	private static String[] commandName = { "cd", "mv", "mkdir", "clear",
+			"cat", "rm", "more", "less", "Date", "pwd", "find", "grep", "help" };
+	private static String[][] args = { { "dir" }, { "dir", "destination dir" },
+			{ "dir" }, { "No Args" }, { "File Name" }, { "dir" },
+			{ "File Name or Directory With file name" },
+			{ "File Name or Directory With file name" }, { "No Args" },
+			{ "No Args" }, { "File name", "dir" }, { "File name", "dir" },
+			{ "No Args" } };
+
+	public static void print(int i) {
+		System.out.println("Command Name " + commandName[i]);
+		System.out.print("Args: ");
+		for (int x = 0; x < args[i].length; x++)
+			System.out.print(args[i][x] + " ");
+		System.out.println("\n//////////////////////////////////\n");
+	}
+
+	public static void help(String command) {
+
+		if (command.equals("NO"))
+			for (int i = 0; i < commandName.length; i++)
+				print(i);
+		else
+			for(int i=0;i<commandName.length;i++)
+				if(commandName[i].equals(command))
+					print(i);
+		
+	}
 
 	public static String listFiles() {
 		File dir = new File(path);
@@ -148,7 +177,7 @@ public class CommandsOpe {
 
 	@SuppressWarnings("deprecation")
 	public static void lessOpe(String fileName) {
-		File file = new File(path +"/"+ fileName);
+		File file = new File(path + "/" + fileName);
 		FileInputStream fis = null;
 		BufferedInputStream bis = null;
 		DataInputStream dis = null;
@@ -215,10 +244,10 @@ public class CommandsOpe {
 	}
 
 	public static void move(String currentPath, String nextPath) {
-		currentPath= path+"/"+currentPath;
-		nextPath= path+"/"+nextPath;
+		currentPath = path + "/" + currentPath;
+		nextPath = path + "/" + nextPath;
 		File myfile = new File(currentPath);
-		
+
 		System.out.println(currentPath);
 		String rename;
 
@@ -283,7 +312,7 @@ public class CommandsOpe {
 		} else {
 			file.delete();
 			System.out.println("File is deleted : " + file.getAbsolutePath());
-			
+
 		}
 
 	}
@@ -308,42 +337,45 @@ public class CommandsOpe {
 		System.out.print("/033[H/033[2J");
 		System.out.flush();
 	}
-	
-	public static void find(String curpath,String wantedfile){
+
+	public static void find(String curpath, String wantedfile) {
 		File dir = new File(curpath);
 		if (dir.isDirectory()) {
 			String[] files = dir.list();
 			for (int i = 0; i < files.length; ++i) {
-				if(files[i].equals(wantedfile)){
-					System.out.println(curpath+"/"+wantedfile);
+				if (files[i].equals(wantedfile)) {
+					System.out.println(curpath + "/" + wantedfile);
 					return;
 				}
-				File dir1=new File(curpath+"/"+files[i]);
-				if(dir1.isDirectory())
-					find(curpath+"/"+files[i],wantedfile);
+				File dir1 = new File(curpath + "/" + files[i]);
+				if (dir1.isDirectory())
+					find(curpath + "/" + files[i], wantedfile);
 			}
 		}
 		return;
 	}
-	public static void grep(String filename,String text){
-		filename=path+"/"+filename;
+
+	public static void grep(String filename, String text) {
+		filename = path + "/" + filename;
 		try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (exist(line,text))
-                	System.out.println(line);
-            }
-            reader.close();
-        } catch (Exception e) {
-            System.err.format("Exception occurred trying to read '%s'.", filename);
-            e.printStackTrace();
-        }
+			BufferedReader reader = new BufferedReader(new FileReader(filename));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				if (exist(line, text))
+					System.out.println(line);
+			}
+			reader.close();
+		} catch (Exception e) {
+			System.err.format("Exception occurred trying to read '%s'.",
+					filename);
+			e.printStackTrace();
+		}
 	}
-	public static boolean exist(String line,String wanted){
-		String ar[]=line.split(" ");
-		for(int i=0;i<ar.length;i++)
-			if(wanted.equals(ar[i]))
+
+	public static boolean exist(String line, String wanted) {
+		String ar[] = line.split(" ");
+		for (int i = 0; i < ar.length; i++)
+			if (wanted.equals(ar[i]))
 				return true;
 		return false;
 	}
