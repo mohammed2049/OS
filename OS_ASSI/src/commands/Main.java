@@ -38,8 +38,8 @@ public class Main  {
 			}else if(arr[0].equals("cat")){
 				CommandsOpe.CreateFile(arr[1]);
 			}else if(arr[0].equals("rm") || arr[0].equals("rmdir")){
-				File myfile = new File(arr[1]);
-				CommandsOpe.delete_directory(myfile);
+				
+				CommandsOpe.delete_directory(arr[1]);
 			}else if(arr[0].equals("more")){
 				CommandsOpe.moreOpe(arr[1]);
 			}else if(arr[0].equals("less")){

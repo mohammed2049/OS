@@ -77,7 +77,8 @@ public class CommandsOpe {
 	}
 
 	public static String[] cd(String path, String target) {
-		String path1=path;
+		String path1 = path;
+		String bool = "1";
 		if (target.charAt(0) == '/') {
 			path1 = "/";
 			target = target.substring(1);
@@ -88,13 +89,14 @@ public class CommandsOpe {
 		while (i < ar.length) {
 			if (isDirectory(path1, ar[i]))
 				path1 += "/" + ar[i];
-			else{
-				target=ar[i];
+			else {
+				target = ar[i];
+				bool = "0";
 				break;
 			}
 			i++;
 		}
-		return new String[]{path1,target};
+		return new String[] { path1, target, bool };
 	}
 
 	public static void cd(String line) {
@@ -181,8 +183,8 @@ public class CommandsOpe {
 	}
 
 	public static void make_dir(String newFilePath) {
-		String arr[]= cd(path,newFilePath);
-		File file = new File(arr[0]+"/"+arr[1]);
+		String arr[] = cd(path, newFilePath);
+		File file = new File(arr[0] + "/" + arr[1]);
 
 		if (!file.exists()) { // No directory exists
 			if (file.mkdir()) {
@@ -193,7 +195,7 @@ public class CommandsOpe {
 		}
 
 		else { // Directory exists , let's check for multiple directories
-			File files = new File(arr[0]+"/"+arr[1]);
+			File files = new File(arr[0] + "/" + arr[1]);
 			Boolean flag = files.mkdirs();
 
 			if (flag == true) {
@@ -235,6 +237,17 @@ public class CommandsOpe {
 			System.out.println("File is moved successful!");
 		} else {
 			System.out.println("File is failed to move!");
+		}
+	}
+
+	public static void delete_directory(String s) {
+		String arr[] = cd(path, s);
+		if (arr[2].equals("0"))
+			System.out.print("There is not directory.\n");
+		else {
+			File myfile = new File(arr[0]);
+			delete_directory(myfile);
+
 		}
 	}
 
